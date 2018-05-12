@@ -24,6 +24,5 @@ class Sale < ApplicationRecord
     else
       Comission.create(value: (calc * 0.1), user: self.user, sale: self, status: :pending)
     end
-    self.sale.update(value: call)
   end
 end
