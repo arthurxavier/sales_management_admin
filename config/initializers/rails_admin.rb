@@ -130,6 +130,16 @@ RailsAdmin.config do |config|
     end
   end
 
+  config.model Product do
+    create do
+      field  :name
+      field  :description
+      field  :status
+      field  :price
+      field  :photo
+    end
+  end
+
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory
