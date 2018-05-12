@@ -23,6 +23,113 @@ RailsAdmin.config do |config|
   ## To disable Gravatar integration in Navigation Bar set to false
   # config.show_gravatar = true
 
+  config.model Sale do
+    create do
+      field  :client
+      field  :sale_date
+      field  :discount
+      field  :notes
+      field  :product_quantities
+      field :user_id, :hidden do
+        default_value do
+          bindings[:view]._current_user.id
+        end
+      end
+    end
+  
+    edit do
+      field  :client
+      field  :sale_date
+      field  :discount
+      field  :notes
+      field  :product_quantities
+      field :user_id, :hidden do
+        default_value do
+          bindings[:view]._current_user.id
+        end
+      end
+    end
+
+    list do
+      field  :id
+      field  :client_id
+      field  :sale_date
+      field  :user_id
+      field  :discount_id
+      field  :notes
+      field  :created_at
+      field  :updated_at
+      field  :product_quantities
+      field  :comission
+    end
+  end
+  
+  config.model Client do
+    create do
+      field  :name
+      field  :company_name
+      field  :document
+      field  :email
+      field  :phone
+      field  :notes
+      field  :status
+      field  :address
+      field :user_id, :hidden do
+        default_value do
+          bindings[:view]._current_user.id
+        end
+      end
+    end
+  
+    edit do
+      field  :name
+      field  :company_name
+      field  :document
+      field  :email
+      field  :phone
+      field  :notes
+      field  :status
+      field  :address
+      field :user_id, :hidden do
+        default_value do
+          bindings[:view]._current_user.id
+        end
+      end
+    end
+  
+    list do
+      field  :name
+      field  :company_name
+      field  :document
+      field  :email
+      field  :phone
+      field  :notes
+      field  :status
+      field  :address
+    end
+  end
+  
+  config.model ProductQuantity do
+    visible false
+  end
+  
+  config.model Address do
+    visible false
+  end
+  
+  
+  config.model ProductQuantity do
+    edit do
+      field :product
+      field :quantity
+      field :user_id, :hidden do
+        default_value do
+          bindings[:view]._current_user.id
+        end
+      end
+    end
+  end
+
   config.actions do
     dashboard                     # mandatory
     index                         # mandatory
